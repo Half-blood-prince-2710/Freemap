@@ -41,7 +41,7 @@ const useSignup = () => {
     try {
       // Make a POST request to the signup API
       const response = await axios.post(
-        "/api/v1/auth/signup",
+        "https://freemap-9jtb.onrender.com/api/v1/auth/signup",
         {
           name,
           email,
@@ -50,7 +50,7 @@ const useSignup = () => {
         }
       );
 
-      console.log(response.data); // Log the response data
+      console.log(response.data.data); // Log the response data
 
       // Store user data in local storage
       localStorage.setItem(
