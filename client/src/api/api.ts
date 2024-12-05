@@ -21,7 +21,7 @@ export interface LocationResponse {
 export async function getLocation() {
   try {
     const response = await axios.get(
-      "https://ip-api.com/json/"
+      "http://ip-api.com/json/"
     );
     const json =
       (await response.json()) as LocationResponse;
