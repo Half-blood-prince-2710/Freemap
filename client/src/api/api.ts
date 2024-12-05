@@ -20,7 +20,7 @@ export interface LocationResponse {
 export async function getLocation() {
   try {
     const response = await fetch(
-      "http://ip-api.com/json/"
+      "https://ip-api.com/json/"
     );
     const json =
       (await response.json()) as LocationResponse;
