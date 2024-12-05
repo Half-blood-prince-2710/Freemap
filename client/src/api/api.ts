@@ -1,5 +1,6 @@
 import { middleOfIndia } from "../constants/constants";
 import { toast } from "react-hot-toast";
+import axios from 'axios'
 export interface LocationResponse {
   status: string;
   country: string;
@@ -19,7 +20,7 @@ export interface LocationResponse {
 
 export async function getLocation() {
   try {
-    const response = await fetch(
+    const response = await axios.get(
       "https://ip-api.com/json/"
     );
     const json =
