@@ -21,11 +21,10 @@ export interface LocationResponse {
 
 export async function getLocation() {
   try {
-    const response = await axios.get<LocationResponse>("https://ip-api.com/json/", {
-      headers: {
-        "User-Agent": "Freemap-client/1.0" // Replace with your app name and version
-      }
-    });
+    const response = await axios.get<LocationResponse>("https://ip-api.com/json/", 
+                                                       
+// {  headers: { "User-Agent": "Freemap-client/1.0" }}
+                                                      );
 
     const json = response.data;
 
