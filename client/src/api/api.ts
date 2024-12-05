@@ -61,7 +61,14 @@
 import { middleOfIndia } from "../constants/constants";
 import { toast } from "react-hot-toast";
 
-export async function getLocation() {
+interface Position {
+  coords: {
+    latitude: number;
+    longitude: number;
+  };
+}
+
+export async function getLocation(): Promise<[number, number]> {
   try {
     // Check if the geolocation API is supported
     if (!navigator.geolocation) {
@@ -70,13 +77,13 @@ export async function getLocation() {
     }
 
     // Get the current position
-    const position = await new Promise((resolve, reject) => {
+    const position: Position = await new Promise((resolve, reject) => {
       navigator.geolocation.getCurrentPosition(resolve, reject);
     });
 
     // Return the latitude and longitude
     return [position.coords.longitude, position.coords.latitude];
-  } catch (error) {
+  } catch (error: any) {
     // Handle errors
     if (error.code === error.PERMISSION_DENIED) {
       toast.error("Permission to access location was denied.");
