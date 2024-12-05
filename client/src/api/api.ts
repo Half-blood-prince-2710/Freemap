@@ -73,7 +73,7 @@ export async function getLocation(): Promise<[number, number]> {
     // Check if the geolocation API is supported
     if (!navigator.geolocation) {
       toast.error("Geolocation is not supported by your browser.");
-      return middleOfIndia;
+      return middleOfIndia as [number, number];
     }
 
     // Get the current position
@@ -82,7 +82,7 @@ export async function getLocation(): Promise<[number, number]> {
     });
 
     // Return the latitude and longitude
-    return [position.coords.longitude, position.coords.latitude];
+    return [position.coords.longitude, position.coords.latitude] as [number, number];
   } catch (error: any) {
     // Handle errors
     if (error.code === error.PERMISSION_DENIED) {
@@ -98,6 +98,6 @@ export async function getLocation(): Promise<[number, number]> {
     console.error("Error getting location:", error);
 
     // Return the default location
-    return middleOfIndia;
+    return middleOfIndia as [number, number];
   }
 }
