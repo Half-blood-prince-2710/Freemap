@@ -26,7 +26,7 @@ const useLogin = () => {
     try {
       const response =
         await axios.post<LoginResponse>(
-          "/api/v1/auth/login",
+          "https://freemap-9jtb.onrender.com/api/v1/auth/login",
           {
             email,
             password,
