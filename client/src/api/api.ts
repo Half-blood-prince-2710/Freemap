@@ -1,6 +1,7 @@
 import { middleOfIndia } from "../constants/constants";
 import { toast } from "react-hot-toast";
-import axios from 'axios'
+import axios from 'axios';
+
 export interface LocationResponse {
   status: string;
   country: string;
@@ -20,31 +21,41 @@ export interface LocationResponse {
 
 export async function getLocation() {
   try {
-    const response = await axios.get(
-      "http://ip-api.com/json/"
-    );
-    const json =
-      await response.data as LocationResponse;
-    if (
-      typeof json.lat === "number" &&
-      typeof json.lon === "number"
-    ) {
+    const response = await axios.get<LocationResponse>("https://ip-api.com/json/", {
+      headers: {
+        "User-Agent": "Freemap-client/1.0" // Replace with your app name and version
+      }
+    });
+
+    const json = response.data;
+
+    if (typeof json.lat === "number" && typeof json.lon === "number") {
       return [json.lon, json.lat];
     }
-    // eslint-disable-next-line no-empty
   } catch (e: unknown) {
     // Handle errors
-    if (e instanceof Error) {
+    if (axios.isAxiosError(e)) {
+      // Handle Axios-specific errors
+      if (e.response) {
+        // The request was made and the server responded with a status code
+        toast.error(`Error: ${e.response.status} - ${e.response.data}`);
+        console.log("Error response data: ", e.response.data);
+      } else if (e.request) {
+        // The request was made but no response was received
+        toast.error("No response received from the server.");
+        console.log("Error request: ", e.request);
+      } else {
+        // Something happened in setting up the request
+        toast.error(e.message);
+        console.log("Error in setup: ", e.message);
+      }
+    } else if (e instanceof Error) {
       toast.error(e.message); // Show error message
-      console.log(
-        "Error in useSignup: ",
-        e.message
-      ); // Log the error
+      console.log("Error in useSignup: ", e.message); // Log the error
     } else {
-      console.error(
-        "An unknown error occurred"
-      ); // Log unknown errors
+      console.error("An unknown error occurred"); // Log unknown errors
     }
-  } 
+  }
+  
   return middleOfIndia;
 }
