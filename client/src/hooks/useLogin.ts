@@ -33,10 +33,10 @@ const useLogin = () => {
           }
         );
 
-      // console.log(
-      //   "use login user data",
-      //   response.data.data
-      // );
+      console.log(
+        "use login user data",
+        response.data.data
+      );
 
       // Check for errors in the response
       if (response.data.error) {
