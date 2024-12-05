@@ -24,7 +24,7 @@ export async function getLocation() {
       "http://ip-api.com/json/"
     );
     const json =
-      (await response.json()) as LocationResponse;
+      await response.data as LocationResponse;
     if (
       typeof json.lat === "number" &&
       typeof json.lon === "number"
