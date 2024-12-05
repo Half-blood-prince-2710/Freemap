@@ -32,7 +32,7 @@ const Login = () => {
           Login
           <span className='text-[#ff8a86c7]'>
             {" "}
-            MapBox
+            FreeMap
           </span>
         </h1>
 
