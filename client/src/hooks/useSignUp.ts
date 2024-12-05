@@ -50,7 +50,7 @@ const useSignup = () => {
         }
       );
 
-      console.log(response.data.data); // Log the response data
+      // console.log(response.data.data); // Log the response data
 
       // Store user data in local storage
       localStorage.setItem(
